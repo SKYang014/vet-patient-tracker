@@ -1,24 +1,22 @@
+// import important parts of sequelize library
 const { Model, DataTypes } = require('sequelize');
+// import our database connection from config.js
+const sequelize = require('../config/connection');
 
-const sequelize = require('../config/connection.js');
+// Initialize Tech model (table) by extending off Sequelize's Model class
+class Tech extends Model { }
 
-class Vet extends Model { }
-
-Vet.init(
+// set up fields and rules for Tech model
+Tech.init(
     {
-        // define an id column
+        // define columns
         id: {
-            // use the special Sequelize DataTypes object provide what type of data it is
             type: DataTypes.INTEGER,
-            // this is the equivalent of SQL's `NOT NULL` option
             allowNull: false,
-            // instruct that this is the Primary Key
             primaryKey: true,
-            // turn on auto increment
             autoIncrement: true
         },
-        // define a Vet name column
-        vet_name: {
+        tech_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -41,18 +39,25 @@ Vet.init(
                 // this means the password must be at least four characters long
                 len: [4]
             }
+        },
+        vet_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'vet',
+                key: 'id'
+            }
         }
     },
     {
         hooks: {
-            async beforeCreate(newVetData) {
-                newVetData.password = await bcrypt.hash(newVetData.password, 10);
-                return newVetData;
+            async beforeCreate(newTechData) {
+                newTechData.password = await bcrypt.hash(newTechData.password, 10);
+                return newTechData;
             },
             // set up beforeUpdate lifecycle "hook" functionality
-            async beforeUpdate(updatedVetData) {
-                updatedVetData.password = await bcrypt.hash(updatedVetData.password, 10);
-                return updatedVetData;
+            async beforeUpdate(updatedTechData) {
+                updatedTechData.password = await bcrypt.hash(updatedTechData.password, 10);
+                return updatedTechData;
             }
         },
     },
@@ -61,8 +66,8 @@ Vet.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'vet',
+        modelName: 'tech',
     }
 );
 
-module.exports = Vet;
+module.exports = Tech;
