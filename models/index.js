@@ -33,4 +33,4 @@ Vet.hasMany(Tech, {
 // });
 
 // module.exports = (Vet, Tech, Owner, Pet)
-module.exports = (Vet, Tech)
+module.exports = { Vet, Tech }
