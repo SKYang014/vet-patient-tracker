@@ -58,7 +58,12 @@ router.post('/', (req, res) => {
         email: req.body.email,
         password: req.body.password
     })
-        .then(dbTechData => res.json(dbTechData))
+    .then(dbTechData => {
+        req.session.save(() => {
+          req.session.loggedIn = true;
+          res.json(dbTechData);
+        });
+      })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -91,8 +96,13 @@ router.post('/login', (req, res) => {
             return;
         }
 
-        res.json({ user: dbTechData, message: 'You are now logged in!' });
+        req.session.save(() => {
+           
+            req.session.loggedIn = true;
+
+        res.json({ dbTechData, message: 'You are now logged in!' });
     });
+});
 });
 
 router.put('/:id', (req, res) => {
