@@ -1,1 +1,17 @@
-<div>You are on the homepage</div>
+<ol class="post-list">
+    {{#each pets as |pet|}}
+  <li>
+    <article class="post">
+      <div class="title">
+        {{pet.pet_name}}
+      </div>
+      <div class="post">
+        species: {{pet.species}}
+      </div>
+       <div class="post">
+        breed: {{pet.breed}}
+      </div>
+    </article>
+  </li>
+  {{/each}}
+</ol>
