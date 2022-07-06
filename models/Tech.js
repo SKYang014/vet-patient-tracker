@@ -2,9 +2,13 @@
 const { Model, DataTypes } = require('sequelize');
 // import our database connection from config.js
 const sequelize = require('../config/connection');
-
+const bcrypt = require('bcrypt');
 // Initialize Tech model (table) by extending off Sequelize's Model class
-class Tech extends Model { }
+class Tech extends Model {
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);
+    }
+}
 
 // set up fields and rules for Tech model
 Tech.init(
@@ -60,14 +64,14 @@ Tech.init(
                 return updatedTechData;
             }
         },
-    },
-    {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'tech',
     }
+
+
 );
 
 module.exports = Tech;

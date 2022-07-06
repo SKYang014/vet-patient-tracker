@@ -2,13 +2,14 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-// try {
-//     await sequelize.authenticate();
-//     console.log('Connection has been established successfully.');
-// } catch (error) {
-//     console.error('Unable to connect to the database:', error);
-// }
-class Vet extends Model { }
+const bcrypt = require('bcrypt');
+
+
+class Vet extends Model {
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);
+    }
+}
 
 
 Vet.init(
@@ -62,13 +63,13 @@ Vet.init(
                 return updatedVetData;
             }
         },
-    },
-    {
+
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'vet',
+
     }
 );
 

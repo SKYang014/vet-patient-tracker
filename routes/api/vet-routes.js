@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Tech,
-                attributes: ['id', 'tech_name', 'tech_email']
+                attributes: ['id', 'tech_name', 'email', 'vet_id']
             },
         ]
     })
@@ -54,7 +54,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     // create a new category
     Vet.create({
-        vet_name: req.body.username,
+        vet_name: req.body.vet_name,
         email: req.body.email,
         password: req.body.password
     })
