@@ -18,6 +18,12 @@ const techData = [
     },
 ];
 
-const seedTechs = () => Tech.bulkCreate(techData);
+
+const seedTechs = async() => {
+    for (let i = 0; i<techData.length; i++){
+        await Tech.create(techData[i]);
+    }
+}
+
 
 module.exports = seedTechs;
