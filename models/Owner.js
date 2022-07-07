@@ -32,7 +32,7 @@ Owner.init(
             }
         },
         phone_num: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             // validate: {
             //     // this means the phone number must be at least 10 characters long
