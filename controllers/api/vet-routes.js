@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     // find all categories
     // be sure to include its associated Products
     Vet.findAll({
-        attributes: { exclude: ['password'] },
+        // attributes: { exclude: ['password'] },
         include: [
             {
                 model: Tech,
@@ -65,40 +65,39 @@ router.post('/', (req, res) => {
         });
 });
 
-router.post('/login', (req, res) => {
-    // expects {email: 'lernantino@gmail.com', password: 'password1234'}
-    Vet.findOne({
-        where: {
-            email: req.body.email
-        }
-    }).then(dbVetData => {
-        if (!dbVetData) {
-            res.status(400).json({ message: 'No user with that email address!' });
-            return;
-        }
+// router.post('/login', (req, res) => {
+//     // expects {email: 'lernantino@gmail.com', password: 'password1234'}
+//     Vet.findOne({
+//         where: {
+//             email: req.body.email
+//         }
+//     }).then(dbVetData => {
+//         if (!dbVetData) {
+//             res.status(400).json({ message: 'No user with that email address!' });
+//             return;
+//         }
 
-        //res.json({ user: dbVetData });
+//         //res.json({ user: dbVetData });
 
-        // Verify user
-        const validPassword = dbVetData.checkPassword(req.body.password);
-        //Note that the instance method was called on the user 
-        //retrieved from the database, dbVetData. Because the 
-        //instance method returns a Boolean, we can use it in a 
-        //conditional statement to verify whether the user has been 
-        //verified or not.
-        if (!validPassword) {
-            res.status(400).json({ message: 'Incorrect password!' });
-            return;
-        }
+//         // Verify user
+//         const validPassword = dbVetData.checkPassword(req.body.password);
+//         //Note that the instance method was called on the user 
+//         //retrieved from the database, dbVetData. Because the 
+//         //instance method returns a Boolean, we can use it in a 
+//         //conditional statement to verify whether the user has been 
+//         //verified or not.
+//         if (!validPassword) {
+//             res.status(400).json({ message: 'Incorrect password!' });
+//             return;
+//         }
 
-        res.json({ user: dbVetData, message: 'You are now logged in!' });
-    });
-});
+//         res.json({ user: dbVetData, message: 'You are now logged in!' });
+//     });
+// });
 
 router.put('/:id', (req, res) => {
     // update a category by its `id` value
     Vet.update(req.body, {
-        individualHooks: true,
         where: {
             id: req.params.id
         }

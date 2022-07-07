@@ -23,7 +23,17 @@ Pet.init(
             type: DataTypes.STRING,
             allowNull: true,
         },
-        //vaccination:{}
+        rabies_vaccination: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+        owner_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'owner',
+                key: 'id'
+            }
+        },
     },
     {
         sequelize,

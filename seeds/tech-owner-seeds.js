@@ -53,4 +53,4 @@ const techOwnerData = [
 
 const seedTechOwners = () => TechOwner.bulkCreate(techOwnerData);
 
-module.exports = seedTechOwners;
+module.exports = seedTechOwners

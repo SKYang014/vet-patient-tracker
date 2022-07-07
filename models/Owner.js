@@ -32,12 +32,20 @@ Owner.init(
             }
         },
         phone_num: {
-            type: DataTypes.NUMERIC,
+            type: DataTypes.NUMBER,
             allowNull: false,
             // validate: {
             //     // this means the phone number must be at least 10 characters long
             //     len: [11]
             // }
+        },
+        tech_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'tech',
+                key: 'id'
+            }
         }
     },
     {

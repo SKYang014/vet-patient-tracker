@@ -12,14 +12,14 @@ const PORT = process.env.PORT || 3001;
 
 const sess = {
     secret: 'Super secret secret',
-    cookie: {},
+    cookie: { maxAge: 6000 },
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
-      db: sequelize
+        db: sequelize
     })
-  };
-  
+};
+
 app.use(session(sess));
 
 app.engine('handlebars', hbs.engine);
@@ -33,6 +33,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // sync sequelize models to the database, then turn on the server
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, () => console.log('Now listening'));
 });
