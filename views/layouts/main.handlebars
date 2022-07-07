@@ -14,9 +14,9 @@
       <h1>
         <a href="/">Vet Patient Tracker</a>
       </h1>
-       <nav>
-      <a href="/login">login</a>
-    </nav>
+      <nav>
+        <a href="/login">login</a>
+      </nav>
     </header>
     <main>
       {{{ body }}}
@@ -25,7 +25,9 @@
       Thanks for your work!
     </footer>
   </div>
+  {{ #if loggedIn }}
 
+  {{ /if }}
 </body>
 
 </html>
