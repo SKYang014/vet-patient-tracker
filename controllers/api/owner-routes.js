@@ -11,12 +11,17 @@ router.get('/', (req, res) => {
         include: [
             {
                 model: Tech,
-                attributes: ['id', 'tech_name']
+                // as: 'through_again',
+                attributes: ['id', 'tech_name'],
+                include: {
+                    model: Vet,
+                    attributes: ['vet_name']
+                }
             },
-            {
-                model: Vet,
-                attributes: ['id', 'vet_name']
-            },
+            // {
+            //     model: Vet,
+            //     attributes: ['id', 'vet_name']
+            // },
         ]
     })
         .then(dbOwnerData => res.json(dbOwnerData))
@@ -37,11 +42,12 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Tech,
-                attributes: ['id', 'tech_name', 'email', 'vet_id']
-            },
-            {
-                model: Vet,
-                attributes: ['id', 'vet_name']
+                // as: 'through_again',
+                attributes: ['id', 'tech_name'],
+                include: {
+                    model: Vet,
+                    attributes: ['vet_name']
+                }
             },
         ]
     })
@@ -62,9 +68,10 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     // create a new category
     Owner.create({
-        owner_name: req.body.vet_name,
+        owner_name: req.body.owner_name,
         email: req.body.email,
         phone_num: req.body.phone_num,
+        tech_id: req.body.tech_id
     })
         .then(dbOwnerData => res.json(dbOwnerData))
         .catch(err => {

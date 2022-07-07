@@ -16,13 +16,13 @@ Vet.hasMany(Tech, {
 // Techs belongToMany Owners (through TechOwner)
 Tech.belongsToMany(Owner, {
     through: TechOwner,
-    as: 'through',
+    // as: 'through',
     foreignKey: 'tech_id'
 });
 // Owners belongToMany Techs (through TechOwner)
 Owner.belongsToMany(Tech, {
     through: TechOwner,
-    as: 'through_again',
+    // as: 'through_again',
     foreignKey: 'owner_id'
 });
 // // pet belongsTo owner
@@ -34,5 +34,5 @@ Owner.belongsToMany(Tech, {
 //     foreignKey: 'owner_id'
 // });
 
-// module.exports = (Vet, Tech, Owner, Pet)
+
 module.exports = { Vet, Tech, Owner, TechOwner }
