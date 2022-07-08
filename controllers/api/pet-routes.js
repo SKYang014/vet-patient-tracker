@@ -26,14 +26,14 @@ router.get('/', (req, res) => {
           }
         }
       },
-      // {
-      //   model: Comment,
-      //   attributes: ['id', 'comment_text', 'pet_id', 'tech_id', 'created_at'],
-      //   include: {
-      //     model: Tech,
-      //     attributes: ['tech_name']
-      //   }
-      // },
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'pet_id', 'tech_id', 'created_at'],
+        include: {
+          model: Tech,
+          attributes: ['tech_name']
+        }
+      },
     ]
   })
     .then(dbPetData => res.json(dbPetData))
@@ -67,14 +67,14 @@ router.get('/:id', (req, res) => {
           }
         }
       },
-      // {
-      //   model: Comment,
-      //   attributes: ['id', 'comment_text', 'pet_id', 'tech_id', 'created_at'],
-      //   include: {
-      //     model: Tech,
-      //     attributes: ['tech_name']
-      //   }
-      // },
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'pet_id', 'tech_id', 'created_at'],
+        include: {
+          model: Tech,
+          attributes: ['tech_name']
+        }
+      },
     ]
   })
     .then(dbPetData => res.json(dbPetData))
@@ -88,9 +88,9 @@ router.post('/', (req, res) => {
   // create a new category
   Pet.create({
     pet_name: req.body.pet_name,
-    species: req.body.email,
-    breed: req.body.password,
-    rabies_vacciantion: req.body.rabies_vacciantion,
+    species: req.body.species,
+    breed: req.body.breed,
+    rabies_vaccination: req.body.rabies_vaccination,
     owner_id: req.body.owner_id
   })
     .then(dbVetData => res.json(dbVetData))

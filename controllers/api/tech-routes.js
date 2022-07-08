@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Vet, Tech } = require('../../models');
+const { Vet, Tech, Pet, Comment } = require('../../models');
 
 // The `/api/categories` endpoint
 
@@ -35,14 +35,14 @@ router.get('/:id', (req, res) => {
                 model: Vet,
                 attributes: ['id', 'vet_name', 'email']
             },
-            // {
-            //     model: Comment,
-            //     attributes: ['id', 'comment_text', 'created_at'],
-            //     include: {
-            //         model: Pet,
-            //         attributes: ['pet_name']
-            //     }
-            // },
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'created_at'],
+                include: {
+                    model: Pet,
+                    attributes: ['pet_name']
+                }
+            },
         ]
     })
         .then(dbTechData => {

@@ -39,14 +39,6 @@ Owner.init(
             //     len: [11]
             // }
         },
-        tech_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'tech',
-                key: 'id'
-            }
-        }
     },
     {
         sequelize,
