@@ -21,8 +21,8 @@ const seedAll = async () => {
     await seedTechOwners();
     console.log('\n----- TECH OWNERS SEEDED -----\n');
 
-    // await seedPets();
-    // console.log('\n----- PETS SEEDED -----\n');
+    await seedPets();
+    console.log('\n----- PETS SEEDED -----\n');
 
     process.exit(0);
 };

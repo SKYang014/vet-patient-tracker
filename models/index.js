@@ -2,7 +2,7 @@
 const Vet = require('./Vet');
 const Tech = require('./Tech');
 const Owner = require('./Owner');
-//const Pet = require('./Pet');
+const Pet = require('./Pet');
 const TechOwner = require('./TechOwner');
 
 // Techs belongsTo Vets
@@ -35,4 +35,4 @@ Owner.belongsToMany(Tech, {
 // });
 
 
-module.exports = { Vet, Tech, Owner, TechOwner }
+module.exports = { Vet, Tech, Owner, TechOwner, Pet }
