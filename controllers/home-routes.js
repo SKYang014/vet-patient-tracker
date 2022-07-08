@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const { Pet } = require('../models');
 
 router.get('/', (req, res) => {
-    console.log(req.session);
+  if (req.session.loggedIn) {
     Pet.findAll({
         attributes: [
             'id',
@@ -15,9 +15,12 @@ router.get('/', (req, res) => {
   .then((dbPetData) => {
     const pets = dbPetData.map(pet => pet.get({ plain: true }));
     res.render('homepage', {pets});
-})
+  })
   .catch(err => {res.status(500).json(err);
-});
+  });
+    return;
+  }
+  res.redirect('/login');
 });
 
 router.get('/login', (req, res) => {
