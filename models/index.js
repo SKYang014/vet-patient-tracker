@@ -25,14 +25,14 @@ Owner.belongsToMany(Tech, {
     // as: 'through_again',
     foreignKey: 'owner_id'
 });
-// // pet belongsTo owner
-// Pet.belongsTo(Owner, {
-//     foreignKey: 'owner_id',
-// });
-// // Owner have many Pets
-// Owner.hasMany(Pet, {
-//     foreignKey: 'owner_id'
-// });
+// pet belongsTo owner
+Pet.belongsTo(Owner, {
+    foreignKey: 'owner_id',
+});
+// Owner have many Pets
+Owner.hasMany(Pet, {
+    foreignKey: 'owner_id'
+});
 
 
 module.exports = { Vet, Tech, Owner, TechOwner, Pet }

@@ -35,6 +35,10 @@ const techOwnerData = [
     },
     {
         tech_id: 5,
+        owner_id: 3,
+    },
+    {
+        tech_id: 5,
         owner_id: 2,
     },
     {
@@ -44,10 +48,6 @@ const techOwnerData = [
     {
         tech_id: 4,
         owner_id: 1,
-    },
-    {
-        tech_id: 5,
-        owner_id: 3,
     },
 ];
 

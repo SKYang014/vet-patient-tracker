@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Pet, Vet, Tech, Owner } = require('../../models');
+const { Pet, Vet, Tech, Owner, TechOwner } = require('../../models');
 
 // The `/api/pets` endpoint
 
@@ -12,16 +12,20 @@ router.get('/', (req, res) => {
     include: [
       {
         model: Owner,
-        attributes: ['id', 'owner_name']
-      },
-      {
-        model: Vet,
-        attributes: ['id', 'Vet_name']
-      },
-      {
-        model: Tech,
-        attributes: ['id', 'tech_name']
-      },
+        attributes: ['id', 'owner_name'],
+        include: {
+          model: Tech,
+          attributes: ['tech_name'],
+          // include: {
+          //   model: Tech,
+          //   attributes: ['tech_name']
+          // },
+          include: {
+            model: Vet,
+            attributes: ['vet_name']
+          }
+        }
+      }
     ]
   })
     .then(dbPetData => res.json(dbPetData))
@@ -35,20 +39,26 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 
   Pet.findOne({
-    // attributes: { exclude: ['password'] },
+    where: {
+      id: req.params.id
+    },
     include: [
       {
         model: Owner,
-        attributes: ['id', 'owner_name']
-      },
-      {
-        model: Vet,
-        attributes: ['id', 'Vet_name']
-      },
-      {
-        model: Tech,
-        attributes: ['id', 'tech_name']
-      },
+        attributes: ['id', 'owner_name'],
+        include: {
+          model: Tech,
+          attributes: ['tech_name'],
+          // include: {
+          //   model: Tech,
+          //   attributes: ['tech_name']
+          // },
+          include: {
+            model: Vet,
+            attributes: ['vet_name']
+          }
+        }
+      }
     ]
   })
     .then(dbPetData => res.json(dbPetData))
@@ -65,9 +75,7 @@ router.post('/', (req, res) => {
     species: req.body.email,
     breed: req.body.password,
     rabies_vacciantion: req.body.rabies_vacciantion,
-    owner_id: req.body.owner_id,
-    tech_id: req.body.owner_id,
-    vet_id: req.body.owner_id,
+    owner_id: req.body.owner_id
   })
     .then(dbVetData => res.json(dbVetData))
     .catch(err => {
@@ -78,7 +86,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
-  Vet.update(req.body, {
+  Pet.update(req.body, {
     where: {
       id: req.params.id
     }
