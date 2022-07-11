@@ -2,7 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Pet, Owner, Comment} = require('../models');
 
-router.get('/', (req, res) => {
+router.get('/pets', (req, res) => {
   console.log(req.session);
   Pet.findAll({
     attributes: [
@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/login', (req, res) => {
+router.get('/', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
