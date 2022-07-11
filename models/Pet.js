@@ -26,14 +26,23 @@ Pet.init(
         rabies_vaccination: {
             type: DataTypes.BOOLEAN,
             allowNull: false
-        },
+        }
+        ,
         owner_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'owner',
                 key: 'id'
             }
-        },
+        }
+        // ,
+        // comment_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'comment',
+        //         key: 'id'
+        //     } 
+        // }
     },
     {
         sequelize,

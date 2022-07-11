@@ -1,0 +1,64 @@
+<article class="post">
+  <div class="title">
+    {{pet.pet_name}}
+  </div>
+  <div class="meta">
+species: {{pet.species}}
+  </div>
+  <div class="meta">
+breed: {{pet.breed}}
+  </div>
+  <div class="meta">
+rabies vaccine: {{pet.rabies_vaccination}}
+  </div>
+  <div class="meta">
+     
+owner's name: {{owner_name}}
+  </div>
+  <div class="meta">
+owner's email:
+  </div>
+  <div class="meta">
+owner's phone number:
+  </div>
+<div class="comments">
+
+  <section class="comment">
+  <div class="meta">
+tech's comments:  
+{{#each pet.comments}} 
+<div>{{comment_text}}
+  </div>
+  
+  {{/each}}
+  </div>
+  </section>
+
+</div>
+</article>
+
+<form class="comment-form">
+  <div>
+    <textarea name="comment-body"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">add comment</button>
+  </div>
+</form>
+
+{{!-- <div class="comments">
+
+  <section class="comment">
+  <div class="meta">
+previous tech's comments:  
+{{#each pet.comments}} 
+<div>{{comment_text}}
+  </div>
+  
+  {{/each}}
+  </div>
+  </section>
+
+</div> --}}
+<script src="/javascript/comment.js"></script>

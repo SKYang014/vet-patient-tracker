@@ -35,17 +35,9 @@ Owner.hasMany(Pet, {
     foreignKey: 'owner_id'
 });
 
-Comment.belongsTo(Tech, {
-    foreignKey: 'tech_id'
-});
-
-Comment.belongsTo(Pet, {
-    foreignKey: 'pet_id'
-});
-
-Tech.hasMany(Comment, {
-    foreignKey: 'tech_id'
-});
+// Tech.hasMany(Comment, {
+//     foreignKey: 'tech_id'
+// });
 
 Pet.hasMany(Comment, {
     foreignKey: 'pet_id'

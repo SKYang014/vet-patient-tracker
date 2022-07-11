@@ -16,22 +16,23 @@ Comment.init(
         },
         comment_text: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 // this means the password must be at least four characters long
                 len: [1]
             }
-        },
+        }
+      ,
         //  we added a user_id field that would hold the primary key 
         //value of a user and post
-        tech_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'tech',
-                key: 'id'
-            }
-        },
+        // tech_id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: 'tech',
+        //         key: 'id'
+        //     }
+        //},
         pet_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
