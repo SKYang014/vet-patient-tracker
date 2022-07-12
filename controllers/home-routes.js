@@ -1,6 +1,11 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Pet, Owner, Comment } = require('../models');
+const moment = require('moment')
+
+const formattedTime = inputTime => {
+  return moment(inputTime).format("[Today is] dddd");
+}
 
 router.get('/pets', (req, res) => {
   console.log(req.session);
@@ -49,7 +54,7 @@ router.get('/pet/:id', (req, res) => {
       ,
       {
         model: Comment,
-        attributes: ['comment_text']
+        attributes: ['comment_text', 'created_at']
       }
     ]
   })
@@ -61,6 +66,10 @@ router.get('/pet/:id', (req, res) => {
 
       // serialize the data
       const pet = dbPetData.get({ plain: true });
+      pet.comments = pet.comments.map(comment => {
+        const updatedComment = { ...comment, created_at: formattedTime(comment.created_at) }
+        return updatedComment
+      })
 
       // pass data to template
       res.render('single-pet', { pet, loggedIn: req.session.loggedIn });
