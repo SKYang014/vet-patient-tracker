@@ -12,19 +12,19 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-     // check the session
-  if (req.session) {
-    Comment.create({
-        comment_text: req.body.comment_text,
-     
-        pet_id: req.body.pet_id,
-        //tech_id: req.session.tech_id
-    })
-        .then(dbCommentData => res.json(dbCommentData))
-        .catch(err => {
-            console.log(err);
-            res.status(400).json(err);
-        });
+    // check the session
+    if (req.body) {
+        //console.log(req)
+        Comment.create({
+            comment_text: req.body.comment_text,
+            tech_id: req.body.tech_id,
+            pet_id: req.body.pet_id,
+        })
+            .then(dbCommentData => res.json(dbCommentData))
+            .catch(err => {
+                console.log(err);
+                res.status(400).json(err);
+            });
     }
 });
 

@@ -3,38 +3,38 @@
     {{pet.pet_name}}
   </div>
   <div class="meta">
-species: {{pet.species}}
+    species: {{pet.species}}
   </div>
   <div class="meta">
-breed: {{pet.breed}}
+    breed: {{pet.breed}}
   </div>
   <div class="meta">
-rabies vaccine: {{pet.rabies_vaccination}}
+    rabies vaccine: {{pet.rabies_vaccination}}
   </div>
   <div class="meta">
-     
-owner's name: {{owner_name}}
-  </div>
-  <div class="meta">
-owner's email:
-  </div>
-  <div class="meta">
-owner's phone number:
-  </div>
-<div class="comments">
 
-  <section class="comment">
+    owner's name: {{pet.owner.owner_name}}
+  </div>
   <div class="meta">
-tech's comments:  
-{{#each pet.comments}} 
-<div>{{comment_text}}
+    owner's email:
   </div>
-  
-  {{/each}}
+  <div class="meta">
+    owner's phone number:
   </div>
-  </section>
+  <div class="comments">
 
-</div>
+    <section class="comment">
+      <div class="meta">
+        tech's comments:
+        {{#each pet.comments}}
+        <div>{{comment_text}}
+        </div>
+
+        {{/each}}
+      </div>
+    </section>
+
+  </div>
 </article>
 
 <form class="comment-form">
@@ -50,14 +50,14 @@ tech's comments:
 {{!-- <div class="comments">
 
   <section class="comment">
-  <div class="meta">
-previous tech's comments:  
-{{#each pet.comments}} 
-<div>{{comment_text}}
-  </div>
-  
-  {{/each}}
-  </div>
+    <div class="meta">
+      previous tech's comments:
+      {{#each pet.comments}}
+      <div>{{comment_text}}
+      </div>
+
+      {{/each}}
+    </div>
   </section>
 
 </div> --}}

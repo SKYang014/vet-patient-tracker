@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Pet, Vet, Tech, Owner, TechOwner } = require('../../models');
+const { Pet, Vet, Tech, Owner, TechOwner, Comment } = require('../../models');
 
 // The `/api/pets` endpoint
 
@@ -57,10 +57,10 @@ router.get('/:id', (req, res) => {
         include: {
           model: Tech,
           attributes: ['tech_name'],
-          // include: {
-          //   model: Tech,
-          //   attributes: ['tech_name']
-          // },
+          include: {
+            model: Tech,
+            attributes: ['tech_name']
+          },
           include: {
             model: Vet,
             attributes: ['vet_name']
