@@ -1,31 +1,31 @@
 <article class="post">
   <div class="title">
-    {{pet.pet_name}}
+    <h2>{{pet.pet_name}}</h2>
   </div>
   <div class="meta">
-    species: {{pet.species}}
+    Species: {{pet.species}}
   </div>
   <div class="meta">
-    breed: {{pet.breed}}
+    Breed: {{pet.breed}}
   </div>
   <div class="meta">
-    rabies vaccine: {{pet.rabies_vaccination}}
+    Rabies vaccine: {{pet.rabies_vaccination}}
   </div>
   <div class="meta">
 
-    owner's name: {{pet.owner.owner_name}}
+    Owner's name: {{pet.owner.owner_name}}
   </div>
   <div class="meta">
-    owner's email: {{pet.owner.email}}
+    Owner's email: {{pet.owner.email}}
   </div>
   <div class="meta">
-    owner's phone number: {{pet.owner.phone_num}}
+    Owner's phone number: {{pet.owner.phone_num}}
   </div>
   <div class="comments">
 
     <section class="comment">
       <div class="meta">
-        tech's comments:
+        Technician comments:
         {{#each pet.comments}}
         <div>{{comment_text}}
         </div>
