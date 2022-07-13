@@ -4,7 +4,7 @@ const { Pet, Owner, Comment } = require('../models');
 const moment = require('moment')
 
 const formattedTime = inputTime => {
-  return moment(inputTime).format("[Comment Posted at: ] MMM Do YY");
+  return moment(inputTime).format("MMM Do YY");
 }
 
 router.get('/pets', (req, res) => {
@@ -67,7 +67,7 @@ router.get('/pet/:id', (req, res) => {
       // serialize the data
       const pet = dbPetData.get({ plain: true });
       pet.comments = pet.comments.map(comment => {
-        const updatedComment = { ...comment, created_at: formattedTime(comment.created_at) }
+        const updatedComment = { ...comment, created_at: formattedTime(comment.createdAt) }
         return updatedComment
       })
 
