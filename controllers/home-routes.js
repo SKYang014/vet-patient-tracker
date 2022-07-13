@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 const { Pet, Owner, Comment } = require('../models');
 const moment = require('moment')
 
+
 const formattedTime = inputTime => {
   return moment(inputTime).format("MMM Do YY");
 }

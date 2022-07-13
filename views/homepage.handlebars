@@ -1,16 +1,17 @@
-<ol class="post-list">
+
+<ol class="pet-list">
     {{#each pets as |pet|}}
   <li>
-    <article class="post">
+    <article class="pet">
       <div class="title">
         <a href="/pet/{{pet.id}}">
         {{pet.pet_name}}
         </a>
       </div>
-      <div class="post">
+      <div class="pet">
         species: {{pet.species}}
       </div>
-       <div class="post">
+       <div class="pet">
         breed: {{pet.breed}}
       </div>
     </article>
