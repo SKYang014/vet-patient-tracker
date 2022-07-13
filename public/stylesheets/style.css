@@ -3,29 +3,34 @@
   }
   
   body, html {
+    background-color: bisque;
+    background-image: url('./assets/images/pup1.jpg');
+    background-repeat: no-repeat;
+    text-align: center;
     height: 100%;
     padding: 0;
     margin: 0;
     font-family: sans-serif;
-    color: #333;
+    color: rgb(161, 46, 136);
   }
   
   a {
-    text-decoration: none;
-    color: #225ca3;
+    text-decoration:dotted;
+    
+    color: rgb(161, 46, 136);
     font-weight: bold;
     transition: color .1s;
   }
   
   a:hover {
-    color: #3486eb;
+    color: #eb34dc;
   }
   
   button {
-    background-color: #225ca3;
+    background-color: rgb(161, 46, 136);
     border: 0;
     padding: 1%;
-    color: white;
+    color: #eb34dc;
     font-weight: bold;
     transition: background-color .1s;
     cursor: pointer;
@@ -33,7 +38,7 @@
   }
   
   button:hover {
-    background-color: #3486eb;
+    background-color: #eb34dc;
   }
   
   .post-list {
@@ -44,12 +49,12 @@
   textarea, input {
     padding: .5%;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(218, 35, 163);
   }
   
   textarea:focus, input:focus {
     outline: none;
-    border: 1px solid #3486eb;
+    border: 1px solid rgb(218, 35, 163);
   }
   
   textarea {
@@ -75,7 +80,8 @@
   }
   
   header {
-    border-bottom: 1px solid #ccc;
+    
+    border-bottom: 1px solid rgb(218, 35, 163);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -83,7 +89,8 @@
   }
   
   header h1 {
-    font-size: 1em;
+    text-align: center;
+    font-size: large;
   }
   
   main {
@@ -97,7 +104,7 @@
     padding: 0;
     cursor: pointer;
     text-decoration: none;
-    color: #225ca3;
+    color: rgb(161, 46, 136);
     font-size: 100%;
     font-weight: bold;
     transition: color .1s;
@@ -106,26 +113,26 @@
   
   .btn-no-style:hover {
     background: none;
-    color: #3486eb;
+    color: #eb34dc;
   }
   
   .delete-post-btn {
-    background-color: #d41414;
+    background-color: #d414b4;
   }
   
   .delete-post-btn:hover {
-    background-color: #ff643d;
+    background-color: #ff3dc5;
   }
   
   .post {
-    margin-bottom: 2%;
+    margin-bottom: 0.2%;
     line-height: 150%;
   }
   
   .post .title span {
     font-style: italic;
     font-size: 90%;
-    color: #7d7d7d;
+    color: rgb(161, 46, 136);
   }
   
   .edit-link {
@@ -134,12 +141,12 @@
   }
   
   .upvote-btn {
-    background-color: #197d0f;
+    background-color: #d414b4;
     transition: background-color .1s;
   }
   
   .upvote-btn:hover {
-    background-color: #1f9c13;
+    background-color: #ff3dc5;
   }
   
   .comment-form {
@@ -152,7 +159,7 @@
   }
   
   .comment:nth-child(odd) {
-    background-color: #fff5eb;
+    background-color: bisque;
   }
   
   .comment .meta {
@@ -170,7 +177,7 @@
   }
   
   footer {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid rgb(218, 35, 163);
     display: flex;
     justify-content: center;
     padding: 1%;
