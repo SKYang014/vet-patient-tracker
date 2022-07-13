@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
         //console.log(req)
         Comment.create({
             comment_text: req.body.comment_text,
-            tech_id: req.body.tech_id,
+            tech_id: req.session.tech_id,
             pet_id: req.body.pet_id,
         })
             .then(dbCommentData => res.json(dbCommentData))

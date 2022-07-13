@@ -68,6 +68,7 @@ router.post('/', (req, res) => {
     })
         .then(dbTechData => {
             req.session.save(() => {
+                req.session.tech_id = dbTechData.id;
                 req.session.loggedIn = true;
                 res.json(dbTechData);
             });
@@ -80,7 +81,7 @@ router.post('/', (req, res) => {
 
 router.post('/login', (req, res) => {
     // expects {email: 'lernantino@gmail.com', password: 'password1234'}
-    
+
     Tech.findOne({
         where: {
             email: req.body.email
@@ -106,7 +107,7 @@ router.post('/login', (req, res) => {
         }
 
         req.session.save(() => {
-
+            req.session.tech_id = dbTechData.id;
             req.session.loggedIn = true;
 
             res.json({ dbTechData, message: 'You are now logged in!' });

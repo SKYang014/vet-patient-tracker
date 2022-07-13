@@ -4,7 +4,7 @@ const { Pet, Owner, Comment } = require('../models');
 const moment = require('moment')
 
 const formattedTime = inputTime => {
-  return moment(inputTime).format("[Today is] dddd");
+  return moment(inputTime).format("[Comment Posted at: ] MMM Do YY");
 }
 
 router.get('/pets', (req, res) => {
