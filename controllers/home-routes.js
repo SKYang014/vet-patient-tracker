@@ -67,7 +67,7 @@ router.get('/pet/:id', (req, res) => {
       // serialize the data
       const pet = dbPetData.get({ plain: true });
       pet.comments = pet.comments.map(comment => {
-        const updatedComment = { ...comment, created_at: formattedTime(comment.created_at) }
+        const updatedComment = { ...comment, created_at: formattedTime(comment.createdAt) }
         return updatedComment
       })
 
