@@ -3,6 +3,7 @@ const seedTechs = require('./tech-seeds');
 const seedOwners = require('./owner-seeds');
 const seedTechOwners = require('./tech-owner-seeds')
 const seedPets = require('./pet-seeds');
+const seedComments = require('./comment-seeds');
 
 const sequelize = require('../config/connection');
 
@@ -21,8 +22,11 @@ const seedAll = async () => {
     await seedTechOwners();
     console.log('\n----- TECH OWNERS SEEDED -----\n');
 
-    // await seedPets();
-    // console.log('\n----- PETS SEEDED -----\n');
+    await seedPets();
+    console.log('\n----- PETS SEEDED -----\n');
+
+    await seedComments();
+    console.log('\n----- COMMENTS SEEDED -----\n');
 
     process.exit(0);
 };

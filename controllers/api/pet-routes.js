@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Pet, Vet, Tech, Owner } = require('../../models');
+const { Pet, Vet, Tech, Owner, TechOwner, Comment } = require('../../models');
 
 // The `/api/pets` endpoint
 
@@ -12,15 +12,27 @@ router.get('/', (req, res) => {
     include: [
       {
         model: Owner,
-        attributes: ['id', 'owner_name']
+        attributes: ['id', 'owner_name'],
+        include: {
+          model: Tech,
+          attributes: ['tech_name'],
+          // include: {
+          //   model: Tech,
+          //   attributes: ['tech_name']
+          // },
+          include: {
+            model: Vet,
+            attributes: ['vet_name']
+          }
+        }
       },
       {
-        model: Vet,
-        attributes: ['id', 'Vet_name']
-      },
-      {
-        model: Tech,
-        attributes: ['id', 'tech_name']
+        model: Comment,
+        attributes: ['id', 'comment_text', 'pet_id', 'tech_id', 'created_at'],
+        include: {
+          model: Tech,
+          attributes: ['tech_name']
+        }
       },
     ]
   })
@@ -35,19 +47,33 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 
   Pet.findOne({
-    // attributes: { exclude: ['password'] },
+    where: {
+      id: req.params.id
+    },
     include: [
       {
         model: Owner,
-        attributes: ['id', 'owner_name']
+        attributes: ['id', 'owner_name'],
+        include: {
+          model: Tech,
+          attributes: ['tech_name'],
+          include: {
+            model: Tech,
+            attributes: ['tech_name']
+          },
+          include: {
+            model: Vet,
+            attributes: ['vet_name']
+          }
+        }
       },
       {
-        model: Vet,
-        attributes: ['id', 'Vet_name']
-      },
-      {
-        model: Tech,
-        attributes: ['id', 'tech_name']
+        model: Comment,
+        attributes: ['id', 'comment_text', 'pet_id', 'tech_id', 'created_at'],
+        include: {
+          model: Tech,
+          attributes: ['tech_name']
+        }
       },
     ]
   })
@@ -62,12 +88,10 @@ router.post('/', (req, res) => {
   // create a new category
   Pet.create({
     pet_name: req.body.pet_name,
-    species: req.body.email,
-    breed: req.body.password,
-    rabies_vacciantion: req.body.rabies_vacciantion,
-    owner_id: req.body.owner_id,
-    tech_id: req.body.owner_id,
-    vet_id: req.body.owner_id,
+    species: req.body.species,
+    breed: req.body.breed,
+    rabies_vaccination: req.body.rabies_vaccination,
+    owner_id: req.body.owner_id
   })
     .then(dbVetData => res.json(dbVetData))
     .catch(err => {
@@ -78,7 +102,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
-  Vet.update(req.body, {
+  Pet.update(req.body, {
     where: {
       id: req.params.id
     }

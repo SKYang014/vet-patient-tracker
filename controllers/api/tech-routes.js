@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Vet, Tech } = require('../../models');
+const { Vet, Tech, Pet, Comment } = require('../../models');
 
 // The `/api/categories` endpoint
 
@@ -35,6 +35,14 @@ router.get('/:id', (req, res) => {
                 model: Vet,
                 attributes: ['id', 'vet_name', 'email']
             },
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'created_at'],
+                include: {
+                    model: Pet,
+                    attributes: ['pet_name']
+                }
+            },
         ]
     })
         .then(dbTechData => {
@@ -58,12 +66,13 @@ router.post('/', (req, res) => {
         email: req.body.email,
         password: req.body.password
     })
-    .then(dbTechData => {
-        req.session.save(() => {
-          req.session.loggedIn = true;
-          res.json(dbTechData);
-        });
-      })
+        .then(dbTechData => {
+            req.session.save(() => {
+                req.session.tech_id = dbTechData.id;
+                req.session.loggedIn = true;
+                res.json(dbTechData);
+            });
+        })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
@@ -72,6 +81,7 @@ router.post('/', (req, res) => {
 
 router.post('/login', (req, res) => {
     // expects {email: 'lernantino@gmail.com', password: 'password1234'}
+
     Tech.findOne({
         where: {
             email: req.body.email
@@ -97,12 +107,23 @@ router.post('/login', (req, res) => {
         }
 
         req.session.save(() => {
-           
+            req.session.tech_id = dbTechData.id;
             req.session.loggedIn = true;
 
-        res.json({ dbTechData, message: 'You are now logged in!' });
+            res.json({ dbTechData, message: 'You are now logged in!' });
+        });
     });
 });
+
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    }
+    else {
+        res.status(404).end();
+    }
 });
 
 router.put('/:id', (req, res) => {

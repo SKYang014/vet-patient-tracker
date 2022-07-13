@@ -2,8 +2,9 @@
 const Vet = require('./Vet');
 const Tech = require('./Tech');
 const Owner = require('./Owner');
-//const Pet = require('./Pet');
+const Pet = require('./Pet');
 const TechOwner = require('./TechOwner');
+const Comment = require('./Comment');
 
 // Techs belongsTo Vets
 Tech.belongsTo(Vet, {
@@ -25,14 +26,21 @@ Owner.belongsToMany(Tech, {
     // as: 'through_again',
     foreignKey: 'owner_id'
 });
-// // pet belongsTo owner
-// Pet.belongsTo(Owner, {
-//     foreignKey: 'owner_id',
-// });
-// // Owner have many Pets
-// Owner.hasMany(Pet, {
-//     foreignKey: 'owner_id'
+// pet belongsTo owner
+Pet.belongsTo(Owner, {
+    foreignKey: 'owner_id',
+});
+// Owner have many Pets
+Owner.hasMany(Pet, {
+    foreignKey: 'owner_id'
+});
+
+// Tech.hasMany(Comment, {
+//     foreignKey: 'tech_id'
 // });
 
+Pet.hasMany(Comment, {
+    foreignKey: 'pet_id'
+});
 
-module.exports = { Vet, Tech, Owner, TechOwner }
+module.exports = { Vet, Tech, Owner, TechOwner, Pet, Comment } //Comment

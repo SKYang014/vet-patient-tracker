@@ -2,23 +2,23 @@ const { Vet } = require('../models');
 
 const vetData = [
     {
-        vet_name: 'Bob', email: 'bob@vet.com',
+        vet_name: 'Mary', email: 'mary@vet.com',
         //  password: '1234'
     },
     {
-        vet_name: 'Kim', email: 'kim@vet.com',
+        vet_name: 'Rocco', email: 'rocco@vet.com',
         //  password: '1234'
     },
     {
-        vet_name: 'Joe', email: 'joe@vet.com',
+        vet_name: 'Ciara', email: 'ciarra@vet.com',
         //  password: '1234'
     },
     {
-        vet_name: 'Alice', email: 'alice@vet.com',
+        vet_name: 'Halima', email: 'halima@vet.com',
         //  password: '1234'
     },
     {
-        vet_name: 'Justine', email: 'justine@vet.com',
+        vet_name: 'Kieren', email: 'Kieren@vet.com',
         //  password: '1234'
     },
 ];

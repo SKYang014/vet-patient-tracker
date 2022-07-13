@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vet Patient Tracker</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><img src="assets/images/1.jpg"></title>
 </head>
 
 <body>
@@ -15,7 +16,12 @@
         <a href="/">Vet Patient Tracker</a>
       </h1>
       <nav>
-        <a href="/login">login</a>
+        <div id="date"></div>
+        {{#if loggedIn}}
+        <button id="logout" class="btn-no-style">logout</button>
+        {{!-- {{else}}
+        <a href="/">login</a> --}}
+        {{/if}}
       </nav>
     </header>
     <main>
@@ -25,9 +31,9 @@
       Thanks for your work!
     </footer>
   </div>
-  {{ #if loggedIn }}
-
-  {{ /if }}
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
 </body>
 
 </html>

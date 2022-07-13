@@ -38,15 +38,16 @@ Owner.init(
             //     // this means the phone number must be at least 10 characters long
             //     len: [11]
             // }
-        },
-        tech_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'tech',
-                key: 'id'
-            }
         }
+        // ,
+        // pet_id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: 'pet',
+        //         key: 'id'
+        //     }
+        // }
     },
     {
         sequelize,
