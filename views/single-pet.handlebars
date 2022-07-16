@@ -27,9 +27,9 @@
       <div class="meta">
         Technician comments:
         {{#each pet.comments}}
-        <div>{{comment_text}}
-        </div>
-        <div>Posted at: {{ created_at }}</div>
+        <div>{{comment_text}}</div>
+        <div>Posted at: {{ created_at }} </div>
+        <div> {{ pet.comments.tech_name }}</div>
 
         {{/each}}
       </div>
@@ -42,7 +42,7 @@
   <div>
     <textarea name="comment-body"></textarea>
   </div>
-
+  <input type="hidden" id="tech_id" name="tech_id" value="{{ tech_id }}">
   <div>
     <button type="submit">add comment</button>
   </div>

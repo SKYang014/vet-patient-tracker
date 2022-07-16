@@ -26,14 +26,14 @@ router.get('/', (req, res) => {
           }
         }
       },
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'pet_id', 'tech_id', 'created_at'],
-        include: {
-          model: Tech,
-          attributes: ['tech_name']
-        }
-      },
+      // {
+      //   model: Comment,
+      //   attributes: ['id', 'comment_text', 'pet_id', 'tech_id', 'created_at'],
+      //   include: {
+      //     model: Tech,
+      //     attributes: ['tech_name']
+      //   }
+      // },
     ]
   })
     .then(dbPetData => res.json(dbPetData))

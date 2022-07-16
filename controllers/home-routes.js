@@ -19,7 +19,7 @@ router.get('/pets', (req, res) => {
   })
     .then((dbPetData) => {
       const pets = dbPetData.map(pet => pet.get({ plain: true }));
-      res.render('homepage', { pets, loggedIn: req.session.loggedIn });
+      res.render('homepage', { pets, loggedIn: req.session.loggedIn, tech_id: req.session.tech_id });
     })
     .catch(err => {
       res.status(500).json(err);
@@ -72,7 +72,7 @@ router.get('/pet/:id', (req, res) => {
       })
 
       // pass data to template
-      res.render('single-pet', { pet, loggedIn: req.session.loggedIn });
+      res.render('single-pet', { pet, loggedIn: req.session.loggedIn, tech_id: req.session.tech_id });
     })
     .catch(err => {
       console.log(err);
