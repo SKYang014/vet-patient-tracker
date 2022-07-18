@@ -14,7 +14,7 @@ async function commentFormHandler(event) {
         pet_id,
         comment_text,
         tech_id,
-        tech_name
+        // tech_name
       }),
       headers: {
         'Content-Type': 'application/json'
